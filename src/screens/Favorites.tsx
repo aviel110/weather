@@ -1,17 +1,22 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Button } from 'react-native';
+import { useConnect } from 'remx';
 
-// import {Dimens, Typography} from '../../../../styles';
-// import {Strings, Images, Colors} from '@assets';
+import * as store from '../stores/favorites/favoritesStore';
+import * as actions from '../stores/favorites/favoritesActions';
 
 type FavoritesProps = {
   coinSymbol: string;
 };
 
 const Favorites = (props: FavoritesProps) => {
+  const { favoritesList } = useFavoritesConnect();
   return (
     <View style={styles.container}>
-      <Text>Favorites</Text>
+      {favoritesList.map(f => (
+        <Text key={f}>{f}</Text>
+      ))}
+      <Button title="button" onPress={() => actions.setFavorites()} />
     </View>
   );
 };
@@ -21,5 +26,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+const useFavoritesConnect = () =>
+  useConnect(() => ({
+    favoritesList: store.getters.getFavorites(),
+  }));
 
 export default Favorites;

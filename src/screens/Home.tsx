@@ -1,9 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-// import {Dimens, Typography} from '../../../../styles';
-// import {Strings, Images, Colors} from '@assets';
-
 type HomeProps = {
   coinSymbol: string;
 };
