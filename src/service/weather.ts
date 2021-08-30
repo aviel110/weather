@@ -1,7 +1,8 @@
 import { Alert } from 'react-native';
-import axios from 'axios';
+import axios, { CancelTokenSource } from 'axios';
 
 import { getCurrentLocation } from '../utils/location';
+import { LocationType } from '../assets/types';
 
 const conf = require('../config');
 
@@ -18,9 +19,9 @@ export const ERRORS = {
 };
 
 let apiKey = conf.keys[0];
-let autoCompleteCancelToken = undefined;
-let dailyForecastsCancelToken = undefined;
-let geopositionSearchCancelToken = undefined;
+let autoCompleteCancelToken: CancelTokenSource | undefined = undefined;
+let dailyForecastsCancelToken: CancelTokenSource | undefined = undefined;
+let geopositionSearchCancelToken: CancelTokenSource | undefined = undefined;
 
 const instance = axios.create({
   baseURL: 'http://dataservice.accuweather.com',
@@ -31,7 +32,7 @@ instance.interceptors.request.use(
   err => Promise.reject(err),
 );
 
-const handleResponseError = err => {
+const handleResponseError = (err: any) => {
   if (axios.isCancel(err)) {
     return;
   }
@@ -42,6 +43,7 @@ const handleResponseError = err => {
 
   const errStatusCode = err.response.status.toString();
   if (errStatusCode in ERRORS) {
+    //@ts-ignore
     Alert.alert(ERRORS[errStatusCode].title, ERRORS[errStatusCode].message);
     return Promise.reject(err);
   }
@@ -53,21 +55,21 @@ const handleResponseError = err => {
 
 instance.interceptors.response.use(res => res, handleResponseError);
 
-export const getAutocompleteSearch = async query => {
-  if (typeof autoCompleteCancelToken != typeof undefined) {
+export const getAutocompleteSearch = async (query: string): Promise<LocationType[] | undefined> => {
+  if (autoCompleteCancelToken !== undefined) {
     autoCompleteCancelToken.cancel('Operation canceled due to new request.');
   }
   autoCompleteCancelToken = axios.CancelToken.source();
 
   try {
     const response = await instance.get(`/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${query}`, { cancelToken: autoCompleteCancelToken.token });
-    return response?.data;
+    return response.data;
   } catch (error) {
     console.log('getAutocompleteSearch error: ', error.message);
   }
 };
 
-export const getCurrentConditions = async (locationKey, details = false) => {
+export const getCurrentConditions = async (locationKey: string, details = false) => {
   try {
     const response = await instance.get(`/currentconditions/v1/${locationKey}?apikey=${apiKey}&details=${details}`);
     return response?.data;
@@ -76,8 +78,8 @@ export const getCurrentConditions = async (locationKey, details = false) => {
   }
 };
 
-export const get5DaysDailyForecasts = async (locationKey, details = false) => {
-  if (typeof dailyForecastsCancelToken != typeof undefined) {
+export const get5DaysDailyForecasts = async (locationKey: string, details = false) => {
+  if (dailyForecastsCancelToken !== undefined) {
     dailyForecastsCancelToken.cancel('Operation canceled due to new request.');
   }
   dailyForecastsCancelToken = axios.CancelToken.source();
@@ -94,7 +96,7 @@ export const get5DaysDailyForecasts = async (locationKey, details = false) => {
 };
 
 export const getGeopositionSearch = async () => {
-  if (typeof geopositionSearchCancelToken != typeof undefined) {
+  if (geopositionSearchCancelToken !== undefined) {
     geopositionSearchCancelToken.cancel('Operation canceled due to new request.');
   }
   geopositionSearchCancelToken = axios.CancelToken.source();

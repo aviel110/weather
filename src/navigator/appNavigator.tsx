@@ -2,8 +2,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import Home from '../screens/Home';
-import Favorites from '../screens/Favorites';
+import Home from '../screens/home';
+import Favorites from '../screens/favorites';
 
 export enum ScreenName {
   HOME = 'Home',

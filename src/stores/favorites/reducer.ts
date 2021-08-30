@@ -1,11 +1,12 @@
 import { Reducer } from 'redux';
+import { LocationType, locationTypeMock_Jerusalem, locationTypeMock_TelAviv } from '../../assets/types';
 
 export type FavoritesState = {
-  favorites: any[];
+  favorites: LocationType[];
 };
 
 const initialState: FavoritesState = {
-  favorites: ['yemen'],
+  favorites: [locationTypeMock_Jerusalem, locationTypeMock_TelAviv],
 };
 
 const ON_FAVORITES_UPDATED = 'onFavoritesUpdated';
