@@ -1,16 +1,13 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
-import { favoritesReducer, FavoritesState } from './favorites/reducer';
 import thunk from 'redux-thunk';
-import { homeReducer, HomeState } from './home/reducer';
+import { locationsReducer, LocationsState } from './locations/reducer';
 
 export interface ApplicationState {
-  homeState: HomeState;
-  favoritesState: FavoritesState;
+  locationsState: LocationsState;
 }
 
 const reducers = combineReducers<ApplicationState>({
-  favoritesState: favoritesReducer,
-  homeState: homeReducer,
+  locationsState: locationsReducer,
 });
 
 const store = createStore(reducers, {}, compose(applyMiddleware(thunk)));

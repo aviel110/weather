@@ -1,16 +1,17 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSelector } from 'react-redux';
-import { getFavoritesSelector } from '../../stores/favorites/selectors';
-import { Dimens } from '../../styles';
-import FavoritesLocationCard from './components/favoritesLocationCard';
+
+import { getFavoritesSelector } from '../../stores/locations/selectors';
+import FavoriteCard from './components/favoriteCard/FavoriteCard';
 
 const Favorites = () => {
   const favoritesList = useSelector(getFavoritesSelector);
+  console.log('🚀 ~ file: Favorites.tsx ~ line 10 ~ Favorites ~ favoritesList', favoritesList);
   return (
     <View>
       {favoritesList.map(item => (
-        <FavoritesLocationCard location={item} key={item.Key} />
+        <FavoriteCard location={item} key={item.Key} />
       ))}
     </View>
   );

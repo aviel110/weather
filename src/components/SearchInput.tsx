@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity, TextInput, Text } from 'react-native';
-import { LocationType } from '../../../assets/types';
-import { getAutocompleteSearch } from '../../../service/weather';
+import { LocationType } from '../assets/types';
+import { getAutocompleteSearch } from '../service/weather';
 
 const SearchInput = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');

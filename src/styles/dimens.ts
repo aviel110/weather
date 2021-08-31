@@ -6,4 +6,6 @@ export const icon_medium = 48;
 export const icon_small = 36;
 export const icon_tiny = 24;
 
+export const space4 = 4;
+export const space8 = 8;
 export const space16 = 16;

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import { TempRepresentationType } from '../../assets/types';
 
+import { Strings } from '../../assets';
+import { TempRepresentationType } from '../../assets/types';
 import { iconSizeBigStyle } from '../../styles';
 import { getWeatherIcon } from '../../utils/wether';
 
@@ -15,7 +16,7 @@ const CurrentStatusTemp = (props: CurrentStatusTempProps) => {
   return (
     <View style={styles.currStatusTempContainer}>
       {source && <Image source={source} style={styles.currStatusIcon} />}
-      <Text style={styles.currStatusTemp}>{props.temperature.Value}</Text>
+      <Text style={styles.currStatusTemp}>{Strings.formatTemp(props.temperature.Value)}</Text>
     </View>
   );
 };

@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { Text, View, StyleSheet } from 'react-native';
-import { CurrentConditionsType } from '../../../../assets/types';
-import CurrentStatusTemp from '../../../../components/currentStatusTemp';
-import { Colors } from '../../../../styles';
+
+import { Strings } from '../../assets';
+import { CurrentConditionsDetaildType } from '../../assets/types';
+import { Colors } from '../../styles';
+import CurrentStatusTemp from '../currentStatusTemp';
 
 type CurrentStatusFrameProps = {
-  currentConditions: CurrentConditionsType | undefined;
+  currentConditions: CurrentConditionsDetaildType | undefined;
   style?: StyleProp<ViewStyle>;
 };
 
@@ -16,8 +18,7 @@ const CurrentStatusFrame = (props: CurrentStatusFrameProps) => {
       <CurrentStatusTemp weatherIcon={props.currentConditions.WeatherIcon} temperature={props.currentConditions.Temperature.Metric} />
       <View style={styles.currStatusExtraInfoContainer}>
         <Text style={styles.currStatusExtraInfo}>{props.currentConditions.WeatherText}</Text>
-        <Text style={styles.currStatusExtraInfo}>31° / 26°</Text>
-        <Text style={styles.currStatusExtraInfo}>Feels like 32°</Text>
+        <Text style={styles.currStatusExtraInfo}>{Strings.realFeelTemperature(props.currentConditions.RealFeelTemperature.Metric.Value)}</Text>
       </View>
     </View>
   ) : null;
