@@ -1,4 +1,4 @@
-import WeatherIcons from './images';
+import * as Images from './images';
 import * as Strings from './strings';
 
-export { WeatherIcons, Strings };
+export { Images, Strings };

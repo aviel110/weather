@@ -1,6 +1,6 @@
 import { CurrentConditionsDetaildType, CurrentConditionsType, DailyForecastDetailedType, LocationType } from '../assets/types';
 
-function delay(delayInms: number) {
+export function delay(delayInms: number) {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(2);

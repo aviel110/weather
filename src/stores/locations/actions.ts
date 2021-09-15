@@ -3,7 +3,8 @@ import { LocationType } from '../../assets/types';
 export enum LocationsActions {
   ON_CURRENT_LOCATION_UPDATED = 'onCurrentLocationUpdated',
   ON_FAVORITES_UPDATED = 'onFavoritesUpdated',
-  ON_FAVORITE_DELETE = 'onFavoriteDelete',
+  ON_DELETE_FAVORITE = 'onDeleteFavorite',
+  ON_ADD_FAVORITE = 'onAddFavorite',
 }
 
 export const setCurrentLocation = (newLocation: LocationType) => {
@@ -20,11 +21,16 @@ export const onFavoritesUpdated = (newFavoritesArray: LocationType[]) => {
   };
 };
 
-export const onFavoriteDelete = (keyToDelete: string) => {
-  console.log('🚀 ~ file: actions.ts ~ line 29 ~ onFavoriteDelete ~ keyToDelete', keyToDelete);
-
+export const onDeleteFavorite = (keyToDelete: string) => {
   return {
     payload: keyToDelete,
-    type: LocationsActions.ON_FAVORITE_DELETE,
+    type: LocationsActions.ON_DELETE_FAVORITE,
+  };
+};
+
+export const onAddFavorite = (locationToAdd: LocationType) => {
+  return {
+    payload: locationToAdd,
+    type: LocationsActions.ON_ADD_FAVORITE,
   };
 };

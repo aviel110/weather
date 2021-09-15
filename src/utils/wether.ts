@@ -1,4 +1,4 @@
-import { Strings, WeatherIcons } from '../assets';
+import { Strings, Images } from '../assets';
 import { TempUnits } from '../assets/types';
 
 export const cels2Fahr = (valueInCelsius: number) => {
@@ -12,7 +12,7 @@ export const fahr2Celc = (valueInFahrenheit: number) => {
 };
 
 export const getWeatherIcon = (idx: number) => {
-  return WeatherIcons.find(item => item.idx === idx)?.icon;
+  return Images.WeatherIcons.find(item => item.idx === idx)?.icon;
 };
 
 export const formatMinMaxTemp = (min: number, max: number, currUnit: string, displayUnit: string) => {

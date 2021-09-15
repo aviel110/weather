@@ -2,10 +2,10 @@ import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import SimpleLineIconsIcon from 'react-native-vector-icons/SimpleLineIcons';
 
-import { DailyForecastDetailedType, TempUnits } from '../../assets/types';
-import { Colors, Dimens, iconSizeTinyStyle } from '../../styles';
-import { dateToWeekDay } from '../../utils/dates';
-import { formatMinMaxTemp, getWeatherIcon } from '../../utils/wether';
+import { DailyForecastDetailedType, TempUnits } from '../assets/types';
+import { Colors, Dimens, iconSizeXSmallStyle } from '../styles';
+import { dateToWeekDay } from '../utils/dates';
+import { formatMinMaxTemp, getWeatherIcon } from '../utils/wether';
 
 type ForecastFrameProps = {
   forecast: DailyForecastDetailedType;
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   icon: {
-    ...iconSizeTinyStyle,
+    ...iconSizeXSmallStyle,
     marginHorizontal: Dimens.space4,
   },
   humidityContainer: {

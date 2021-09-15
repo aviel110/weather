@@ -19,9 +19,14 @@ const reducer: Reducer<LocationsState> = (state = initialState, action) => {
       return { ...state, currentLocation: action.payload };
     case LocationsActions.ON_FAVORITES_UPDATED:
       return { ...state, favorites: action.payload };
-    case LocationsActions.ON_FAVORITE_DELETE:
+    case LocationsActions.ON_DELETE_FAVORITE:
       const updatedFavorites = state.favorites.filter(item => item.Key !== action.payload);
       return { ...state, favorites: updatedFavorites };
+    case LocationsActions.ON_ADD_FAVORITE:
+      if (!!state.favorites.find(loc => loc.Key === action.payload.key)) {
+        return state;
+      }
+      return { ...state, favorites: [...state.favorites, action.payload] };
     default:
       return state;
   }

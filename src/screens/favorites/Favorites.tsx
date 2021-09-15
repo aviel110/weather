@@ -1,25 +1,34 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { FlatList, ListRenderItemInfo, StyleSheet, View } from 'react-native';
 import { useSelector } from 'react-redux';
+import { LocationType } from '../../assets/types';
+import { COLLAPSED_HEIGHT } from '../../components/collapsingHeader/constants';
+import Navbar from '../../components/Navbar';
 
 import { getFavoritesSelector } from '../../stores/locations/selectors';
-import FavoriteCard from './components/favoriteCard/FavoriteCard';
+import { Colors } from '../../styles';
+import FavoriteCard from './FavoriteCard';
+
+const renderFavoritesItem = ({ item }: ListRenderItemInfo<LocationType>) => {
+  return <FavoriteCard location={item} key={item.Key} />;
+};
 
 const Favorites = () => {
   const favoritesList = useSelector(getFavoritesSelector);
-  console.log('🚀 ~ file: Favorites.tsx ~ line 10 ~ Favorites ~ favoritesList', favoritesList);
   return (
-    <View>
-      {favoritesList.map(item => (
-        <FavoriteCard location={item} key={item.Key} />
-      ))}
+    <View style={styles.container}>
+      <Navbar style={styles.navbar} title="Saved Locations" />
+      <FlatList data={favoritesList} renderItem={renderFavoritesItem} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    paddingTop: COLLAPSED_HEIGHT,
+  },
+  navbar: {
+    backgroundColor: Colors.lightGray,
   },
 });
 

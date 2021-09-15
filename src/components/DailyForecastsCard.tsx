@@ -1,25 +1,22 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { LocationType } from '../../assets/types';
-import { use5DailyForecasts } from '../../hooks/useDailyForecasts';
-import { Colors, Dimens } from '../../styles';
-import ForecastFrame from '../forecastFrame';
+import { DailyForecastDetailedType } from '../assets/types';
+import { Colors, Dimens } from '../styles';
+import ForecastFrame from './ForecastFrame';
 
 type HomeLocationCardProps = {
-  location: LocationType;
+  dailyForecasts: DailyForecastDetailedType[];
 };
 
 const DailyForecastsCard = (props: HomeLocationCardProps) => {
-  const { dailyForecasts } = use5DailyForecasts({ locationKey: props.location.Key, details: true });
-
-  return dailyForecasts.length > 0 ? (
+  return (
     <View style={styles.container}>
-      {dailyForecasts.map(df => (
+      {props.dailyForecasts.map(df => (
         <ForecastFrame forecast={df} key={df.Date} />
       ))}
     </View>
-  ) : null;
+  );
 };
 
 const styles = StyleSheet.create({
@@ -29,11 +26,6 @@ const styles = StyleSheet.create({
     borderRadius: Dimens.cardBorderRadius,
     padding: Dimens.cardPadding,
     margin: Dimens.cardPadding,
-  },
-  forecastContainer: {
-    flexGrow: 1,
-    flexShrink: 1,
-    flexDirection: 'row',
   },
 });
 

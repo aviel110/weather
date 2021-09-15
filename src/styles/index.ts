@@ -8,6 +8,12 @@ export const iconSizeTinyStyle: ImageStyle = {
   resizeMode: 'cover',
 };
 
+export const iconSizeXSmallStyle: ImageStyle = {
+  width: Dimens.icon_x_small,
+  height: Dimens.icon_x_small,
+  resizeMode: 'cover',
+};
+
 export const iconSizeSmallStyle: ImageStyle = {
   width: Dimens.icon_small,
   height: Dimens.icon_small,
