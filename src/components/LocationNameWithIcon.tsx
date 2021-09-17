@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
-import FeatherIcon from 'react-native-vector-icons/Feather';
 
-import { Dimens } from '../styles';
+import { Colors, Dimens } from '../styles';
+import Icon, { IconFamily } from './Icon';
 
 type LocationNameWithTimeProps = {
   locationName: string;
@@ -12,7 +12,7 @@ type LocationNameWithTimeProps = {
 const LocationNameWithIcon = (props: LocationNameWithTimeProps) => {
   return (
     <View style={[styles.locationNameContainer, props.style]}>
-      <FeatherIcon name="map-pin" size={Dimens.icon_tiny} />
+      <Icon iconFamily={IconFamily.FEATHER} name="map-pin" size={Dimens.icon_tiny} color={Colors.black} />
       <Text style={styles.locationName}>{props.locationName}</Text>
     </View>
   );

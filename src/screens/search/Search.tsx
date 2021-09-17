@@ -14,8 +14,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import _ from 'lodash';
-import FeatherIcon from 'react-native-vector-icons/Feather';
-import MaterialCommunityIconsIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { LocationType } from '../../assets/types';
 import { locationTypeMock_Jerusalem, locationTypeMock_TelAviv } from '../../service/mocks';
@@ -23,6 +21,7 @@ import { Colors, Dimens } from '../../styles';
 import { setCurrentLocation } from '../../stores/locations/actions';
 import { getFavoritesSelector } from '../../stores/locations/selectors';
 import { useSetFavorite } from '../../hooks/useSetFavorite';
+import Icon, { IconFamily } from '../../components/Icon';
 
 const MIN_QUERY_LENGTH = 1;
 const INPUT_PLACEHOLDER = 'Search Location';
@@ -42,13 +41,11 @@ const renderSuggestionItem = ({ item }: ListRenderItemInfo<EnrichedSearchLocatio
         <Text style={styles.listItemTitle}>{item.LocalizedName}</Text>
         <Text style={styles.listItemSubtitle}>{item.Country.LocalizedName}</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={item.onToggleFavoritePress} style={styles.favoriteToggleIcon}>
-        {item.isFavorite ? (
-          <MaterialCommunityIconsIcon name="heart-minus-outline" size={20} color={'#D35E5E'} />
-        ) : (
-          <MaterialCommunityIconsIcon name="heart-plus-outline" size={20} color={Colors.gray} />
-        )}
-      </TouchableOpacity>
+      {item.isFavorite ? (
+        <Icon iconFamily={IconFamily.MATERIAL_COMMUNITY} name="heart-minus-outline" size={20} color={Colors.red_heart} onPress={item.onToggleFavoritePress} />
+      ) : (
+        <Icon iconFamily={IconFamily.MATERIAL_COMMUNITY} name="heart-plus-outline" size={20} color={Colors.gray} onPress={item.onToggleFavoritePress} />
+      )}
     </View>
   );
 };
@@ -170,7 +167,7 @@ const Search = () => {
       <View style={styles.inputContainer}>
         <View>
           <TouchableWithoutFeedback onPress={navigation.goBack}>
-            <FeatherIcon name="chevron-left" size={24} />
+            <Icon iconFamily={IconFamily.FEATHER} name="chevron-left" size={24} color={Colors.black} />
           </TouchableWithoutFeedback>
         </View>
 
@@ -189,7 +186,7 @@ const Search = () => {
         <View>
           {searchQuery.length > 0 && (
             <TouchableWithoutFeedback onPress={clearInput}>
-              <FeatherIcon name="x" size={24} />
+              <Icon iconFamily={IconFamily.FEATHER} name="x" size={24} color={Colors.black} />
             </TouchableWithoutFeedback>
           )}
         </View>
@@ -257,9 +254,6 @@ const styles = StyleSheet.create({
   emptyStateText: {
     color: Colors.gray,
     fontSize: 20,
-  },
-  favoriteToggleIcon: {
-    marginStart: 12,
   },
 });
 

@@ -7,6 +7,14 @@ export const dateToWeekDay = (dateStr: string) => {
   return weekDay;
 };
 
+export const dateToLocaleTimeString = (dateStr: string | null) => {
+  if (!dateStr) return;
+
+  const date = new Date(dateStr);
+  const time = date.toLocaleTimeString();
+  return time;
+};
+
 export const isToday = (someDateStr: string) => {
   const someDate = new Date(someDateStr);
   const today = new Date();

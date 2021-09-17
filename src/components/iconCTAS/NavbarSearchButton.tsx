@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import { ScreenName } from '../../navigator/types';
 import { useNavigation } from '@react-navigation/core';
-import { Dimens } from '../../styles';
+import { Colors, Dimens } from '../../styles';
+import Icon, { IconFamily } from '../Icon';
 
 type NavbarSearchButton = {
   style?: StyleProp<ViewStyle>;
@@ -19,7 +19,7 @@ const NavbarSearchButton = (props: NavbarSearchButton) => {
     navigation.navigate(ScreenName.SEARCH);
   };
 
-  return <FontAwesomeIcon name="search" size={props.size ?? Dimens.icon_x_small} onPress={onSearch} style={props.style} />;
+  return <Icon iconFamily={IconFamily.FONT_AWESOME} name="search" size={props.size ?? Dimens.icon_x_small} onPress={onSearch} color={Colors.black} style={props.style} />;
 };
 
 export default NavbarSearchButton;

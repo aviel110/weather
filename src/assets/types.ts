@@ -145,6 +145,6 @@ export type DailyForecastDetailedType = {
   RealFeelTemperature: { Maximum: TempRepresentationType; Minimum: TempRepresentationType };
   RealFeelTemperatureShade: { Maximum: TempRepresentationType; Minimum: TempRepresentationType };
   Sources: string[];
-  Sun: { EpochRise: number | null; EpochSet: number | null; Rise: string | null; Set: string };
+  Sun: { EpochRise: number | null; EpochSet: number | null; Rise: string | null; Set: string | null };
   Temperature: { Maximum: TempRepresentationType; Minimum: TempRepresentationType };
 };

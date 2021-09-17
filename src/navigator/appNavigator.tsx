@@ -1,16 +1,14 @@
 import React from 'react';
 import { NavigationContainer, ParamListBase, RouteProp } from '@react-navigation/native';
 import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import Home from '../screens/home';
 import Favorites from '../screens/favorites';
-import Navbar from '../components/Navbar';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import Search from '../screens/search/Search';
-import { BottomTabHeaderProps } from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 import { ScreenName } from './types';
 import { Colors } from '../styles';
+import Icon, { IconFamily } from '../components/Icon';
 
 type TabBarIconProps = {
   focused: boolean;
@@ -37,12 +35,12 @@ const TabNavigatorScreenOptions = (screenProps: { route: RouteProp<ParamListBase
         break;
     }
 
-    return <FeatherIcon name={iconName} size={size} color={color} />;
+    return <Icon iconFamily={IconFamily.FEATHER} name={iconName} size={size} color={color} />;
   };
 
   return {
     tabBarIcon,
-    tabBarActiveTintColor: Colors.sea,
+    tabBarActiveTintColor: Colors.blue_sea,
     tabBarInactiveTintColor: Colors.gray,
     header: () => null,
   };

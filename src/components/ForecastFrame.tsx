@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import SimpleLineIconsIcon from 'react-native-vector-icons/SimpleLineIcons';
 
 import { DailyForecastDetailedType, TempUnits } from '../assets/types';
 import { Colors, Dimens, iconSizeXSmallStyle } from '../styles';
 import { dateToWeekDay } from '../utils/dates';
 import { formatMinMaxTemp, getWeatherIcon } from '../utils/wether';
+import Icon, { IconFamily } from './Icon';
 
 type ForecastFrameProps = {
   forecast: DailyForecastDetailedType;
@@ -16,7 +16,7 @@ const ForecastFrame = (props: ForecastFrameProps) => {
     <View style={styles.container}>
       <Text style={styles.day}>{dateToWeekDay(props.forecast.Date)}</Text>
       <View style={styles.humidityContainer}>
-        <SimpleLineIconsIcon name="drop" size={8} color={Colors.sea} />
+        <Icon iconFamily={IconFamily.SIMPLE_LINE} name="drop" size={8} color={Colors.blue_sea} />
         <Text style={styles.humidityText}>{props.forecast.Day.RainProbability}%</Text>
       </View>
       <View style={styles.iconsContainer}>
